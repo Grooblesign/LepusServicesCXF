@@ -22,7 +22,7 @@
 			<artifactId>spring-web</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
- 		
+
 		<!-- CXF -->
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
@@ -59,26 +59,31 @@
 		</dependency>
 
 		<!-- Camel -->
-		<!-- <dependency> <groupId>org.apache.camel</groupId> <artifactId>camel-core</artifactId> 
-			<version>${camel.version}</version> </dependency> <dependency> <groupId>org.apache.camel</groupId> 
-			<artifactId>camel-cxf</artifactId> <version>${camel.version}</version> </dependency> 
-			<dependency> <groupId>org.apache.camel</groupId> <artifactId>camel-spring</artifactId> 
-			<version>${camel.version}</version> </dependency> -->
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-core</artifactId>
+			<version>${camel.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-cxf</artifactId>
+			<version>${camel.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-spring</artifactId>
+			<version>${camel.version}</version>
+		</dependency>
 
 		<!-- Jackson -->
-		<!-- 
-		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-core-asl</artifactId>
-			<version>1.9.13</version>
-		</dependency>
-		 -->
+		<!-- <dependency> <groupId>org.codehaus.jackson</groupId> <artifactId>jackson-core-asl</artifactId> 
+			<version>1.9.13</version> </dependency> -->
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-jaxrs</artifactId>
 			<version>1.9.13</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -93,7 +98,7 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	
+
 	<build>
 		<finalName>lepusservicescxf</finalName>
 		<defaultGoal>install</defaultGoal>

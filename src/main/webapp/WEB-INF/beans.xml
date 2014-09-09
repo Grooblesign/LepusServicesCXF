@@ -8,7 +8,11 @@
 						http://www.springframework.org/schema/context 
                     	http://www.springframework.org/schema/context/spring-context-3.2.xsd                         
                     	http://cxf.apache.org/jaxrs
-                        http://cxf.apache.org/schemas/jaxrs.xsd"
+                        http://cxf.apache.org/schemas/jaxrs.xsd
+						http://camel.apache.org/schema/spring 
+						http://camel.apache.org/schema/spring/camel-spring.xsd	
+       					http://camel.apache.org/schema/cxf 
+       					http://camel.apache.org/schema/cxf/camel-cxf.xsd"                        
                         >
 
 	<import resource="classpath:META-INF/cxf/cxf.xml" />
@@ -29,12 +33,10 @@
 		</jaxrs:providers>
 	</jaxrs:server>
 
-	<!-- 
 	<camelContext xmlns="http://camel.apache.org/schema/spring">
 		<route>
 			<from uri="file:c:/dev/input?noop=false" />
 			<to uri="file:c:/dev/output" />
 		</route>
 	</camelContext>
-	 -->
 </beans>
