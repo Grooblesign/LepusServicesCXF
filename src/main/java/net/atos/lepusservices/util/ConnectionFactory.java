@@ -8,16 +8,16 @@ public class ConnectionFactory {
 		Connection connection = null;
 
 		// local
-//		String host = "localhost";
-//		String username = "root";
-//		String password = "admin";
-//		String schema = "lepus";
+		String host = "localhost";
+		String username = "root";
+		String password = "admin";
+		String schema = "lepus";
 
 		// remote
-		String host = "10.22.99.181:80";
-		String username = "admin";
-		String password = "qwerty11";
-		String schema = "TFCC_PORTAL";
+//		String host = "10.22.99.181:80";
+//		String username = "admin";
+//		String password = "qwerty11";
+//		String schema = "TFCC_PORTAL";
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
