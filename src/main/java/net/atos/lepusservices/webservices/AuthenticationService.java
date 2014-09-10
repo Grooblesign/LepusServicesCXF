@@ -39,6 +39,7 @@ public class AuthenticationService {
 	private Response getUserForWibble(String wibble) {
 		
 		// logger.info("getUserForWibble in");
+		System.out.println("CXF: getUserForWibble in");
 		
 		Response response= null;
 
@@ -58,7 +59,48 @@ public class AuthenticationService {
 		}
 		
 		// logger.info("getUserForWibble out");
+		System.out.println("CXF: getUserForWibble out");
 
+		return response;
+	}
+	
+	@POST
+	@Path("/user")
+	@Consumes("application/json")
+	@Produces("application/json")
+	public Response getUserForCredentialsInJson(AuthenticationUser user) {
+		
+		return getUserForCredentials(user.getUsername(), user.getPassword());
+		
+	}
+	
+	private Response getUserForCredentials(String username, String password) {
+
+		System.out.println("CXF: getUserForCredentials in");
+
+		Response response= null;
+
+		UserDAO userDAO = new UserDAO();
+		
+		try {
+			User user = userDAO.findByName(username);
+			
+			if (user != null && !user.getPassword().equals(password)) {
+				user = null;
+			}
+
+			if (user == null) {
+				response = Response.status(Status.NOT_FOUND).build();
+			} else {
+				response = Response.ok(user).build();
+			}
+		} catch (Exception exception) {
+			// logger.error("Exception: " + exception.getClass().toString() + " - " + exception.getMessage());
+			response = Response.status(Status.INTERNAL_SERVER_ERROR).build();
+		}
+		
+		System.out.println("CXF: getUserForCredentials out");
+		
 		return response;
 	}
 }
