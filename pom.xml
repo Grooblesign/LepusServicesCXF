@@ -11,29 +11,11 @@
 	<url>http://maven.apache.org</url>
 
 	<properties>
-		<!-- <camel.version>2.13.2</camel.version> -->
-		<!-- <camel.version>2.7.0</camel.version> -->
-		<!-- <spring.version>4.1.0.RELEASE</spring.version> -->
-		<!-- <spring.version>2.5.6</spring.version> -->
-
-		<!-- 
- 		-->
-		<cxf.version>3.0.1</cxf.version>
-		<spring.version>3.2.0.RELEASE</spring.version>
-		<camel.version>2.7.0</camel.version>
- 		
-		<jackson.version>1.9.5</jackson.version>
-		
-		<!-- 		
-		<cxf.version>2.6.1</cxf.version>
-		<camel.version>2.10.1</camel.version>
+		<activemq.version>5.7.0</activemq.version>
+		<camel.version>2.10.0</camel.version>
 		<spring.version>3.0.7.RELEASE</spring.version>
-		 -->
- 		
-		<!-- 
-		<slf4j.version>1.6.1</slf4j.version>
-		<log4j.version>1.2.15</log4j.version>
- 		-->
+		<cxf.version>2.6.1</cxf.version>
+		<jackson.version>1.9.5</jackson.version>
 	</properties>
 
 	<dependencies>
@@ -57,11 +39,6 @@
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-core</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
@@ -70,12 +47,14 @@
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-bundle-jaxrs</artifactId>
-			<version>2.6.1</version>
+			<version>${cxf.version}</version>
 			<exclusions>
+				<!-- 
 				<exclusion>
 					<groupId>org.eclipse.jetty</groupId>
 					<artifactId>jetty-server</artifactId>
 				</exclusion>
+				 -->
 				<exclusion>
 					<groupId>org.apache.geronimo.specs</groupId>
 					<artifactId>geronimo-activation_1.1_spec</artifactId>
@@ -94,55 +73,20 @@
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-rt-frontend-jaxrs</artifactId>
 			<version>${cxf.version}</version>
-			<type>jar</type>
 		</dependency>
-		
-		<!-- CXF -->
-		<!-- 
-		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-frontend-jaxrs</artifactId>
-			<version>${cxf.version}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.codehaus.woodstox</groupId>
-					<artifactId>woodstox-core-asl</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.codehaus.woodstox</groupId>
-					<artifactId>stax2-api</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-transports-http-jetty</artifactId>
-			<version>${cxf.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-frontend-jaxws</artifactId>
-			<version>${cxf.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-bindings-xml</artifactId>
-			<version>${cxf.version}</version>
-		</dependency>
- 		-->
  		
 		<!-- ActiveMQ -->
 		<dependency>
 			<groupId>org.apache.activemq</groupId>
 			<artifactId>activemq-camel</artifactId>
-			<version>5.9.1</version>
+			<version>${activemq.version}</version>
 		</dependency>
 
 		<!-- Jackson -->
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-jaxrs</artifactId>
-			<version>1.9.13</version>
+			<version>${jackson.version}</version>
 		</dependency>
 		
 		<!-- MySQL -->

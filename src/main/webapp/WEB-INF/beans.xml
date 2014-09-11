@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:jaxrs="http://cxf.apache.org/jaxrs" 
-	xmlns:camel="http://cxf.apache.org/transports/camel"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jaxrs="http://cxf.apache.org/jaxrs" xmlns:camel="http://cxf.apache.org/transports/camel"
 	xmlns:cxf="http://camel.apache.org/schema/cxf"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
                         http://www.springframework.org/schema/beans/spring-beans.xsd 
@@ -32,10 +30,10 @@
 		<property name="password" value="admin" />
 	</bean>
 
-	<!-- <cxf:rsServer id="rsServer" address="http://localhost:8181/rest/wibble" 
-		serviceClass="net.atos.lepusservices.webservices.CustomerService" /> -->
+	<cxf:rsServer id="rsServer" address="http://localhost:8181/wibble"
+		serviceClass="net.atos.lepusservices.webservices.CustomerService" />
 
-	<jaxrs:server id="wibbleContainer" address="/">
+	<jaxrs:server id="restServer" address="/">
 		<jaxrs:serviceBeans>
 			<ref bean="authenticationService" />
 			<ref bean="primeService" />
@@ -49,13 +47,18 @@
 	<camelContext xmlns="http://camel.apache.org/schema/spring">
 		<route>
 			<from uri="file:c:/dev/input?noop=false" />
-			<log message="File: ${headers} ======== ${body}"/>			
+			<log message="File: ${headers} ======== ${body}" />
 			<to uri="activemq:queue:Incoming" />
 			<to uri="file:c:/dev/output" />
 		</route>
+		<route>
+			<from uri="cxfrs://bean://rsServer" />
+			<log message="rest: ${headers} ======== ${body}" />
+			<setHeader headerName="CamelCxfRsUsingHttpAPI">
+				<constant>True</constant>
+			</setHeader>
+			<to uri="activemq:queue:RestCalls" />
+		</route>
 	</camelContext>
 
-	<!-- <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring"> 
-		<route> <from uri="cxfrs://bean://rsServer" /> <setHeader headerName="CamelCxfRsUsingHttpAPI"> 
-		<constant>True</constant> </setHeader> </route> </camelContext> -->
 </beans>

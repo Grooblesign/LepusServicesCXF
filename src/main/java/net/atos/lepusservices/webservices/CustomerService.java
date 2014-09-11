@@ -8,7 +8,7 @@ import javax.ws.rs.core.Response;
 public class CustomerService {
 	@GET
 	@Path("/")
-	public Response getCustomer() {
-	    return null;
+	public String getCustomer() {
+	    return "Hello";
 	}
 }
