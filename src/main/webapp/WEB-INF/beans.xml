@@ -17,11 +17,11 @@
 	<import resource="classpath:META-INF/cxf/cxf.xml" />
 	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
 
-	<bean id="authenticationService"
-		class=" net.atos.lepusservices.webservices.AuthenticationService" />
+	<bean id="authenticationService" class=" net.atos.lepusservices.webservices.AuthenticationService" />
 	<bean id="primeService" class="net.atos.lepusservices.webservices.PrimeService" />
 	<bean id="userService" class="net.atos.lepusservices.webservices.UserService" />
 
+	<bean id="authenticationProcessor" class="net.atos.lepusservices.processors.AuthenticationProcessor" />
 	<bean id="wibbleProcessor" class="net.atos.lepusservices.processors.WibbleProcessor" />
 
 	<bean id="jsonProvider" class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />
@@ -33,11 +33,17 @@
 	</bean>
 
 	<cxf:rsServer 
-		id="rsServer" 
-		address="http://localhost:8182/lepusservicescxf"
+		id="rsServer1" 
+		address="http://10.22.99.182:8182/lepusservicescxf"
 		serviceClass="net.atos.lepusservices.webservices.CustomerService"
 		/>
  	
+	<cxf:rsServer 
+		id="rsServer2" 
+		address="http://10.22.99.182:8182/lepusservicescxf/rest/authentication/user"
+		serviceClass="net.atos.lepusservices.webservices.CamelAuthenticationService"
+		/>
+		
 	<jaxrs:server id="restServer" address="/">
 		<jaxrs:serviceBeans>
 			<ref bean="authenticationService" />
@@ -57,10 +63,15 @@
 			<to uri="file:c:/dev/output" />
 		</route>
 		<route>
-			<from uri="cxfrs://bean://rsServer" />
+			<from uri="cxfrs://bean://rsServer1" />
 			<log message="rest: ${headers} ======== ${body}" />
 			<!--  <to uri="activemq:queue:RestCalls" /> -->
 			<process ref="wibbleProcessor" />
+		</route>
+		<route>
+			<from uri="cxfrs://bean://rsServer2" />
+			<log message="rest: ${headers} ======== ${body}" />
+			<process ref="authenticationProcessor" />
 		</route>
 	</camelContext>
 
