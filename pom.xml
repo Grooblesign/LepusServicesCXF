@@ -13,9 +13,10 @@
 	<properties>
 		<activemq.version>5.7.0</activemq.version>
 		<camel.version>2.10.0</camel.version>
-		<spring.version>3.0.7.RELEASE</spring.version>
 		<cxf.version>2.6.1</cxf.version>
 		<jackson.version>1.9.5</jackson.version>
+		<slf4j.version>1.7.7</slf4j.version>
+		<spring.version>3.0.7.RELEASE</spring.version>
 	</properties>
 
 	<dependencies>
@@ -49,12 +50,6 @@
 			<artifactId>cxf-bundle-jaxrs</artifactId>
 			<version>${cxf.version}</version>
 			<exclusions>
-				<!-- 
-				<exclusion>
-					<groupId>org.eclipse.jetty</groupId>
-					<artifactId>jetty-server</artifactId>
-				</exclusion>
-				 -->
 				<exclusion>
 					<groupId>org.apache.geronimo.specs</groupId>
 					<artifactId>geronimo-activation_1.1_spec</artifactId>
@@ -96,13 +91,7 @@
 			<version>5.1.31</version>
 		</dependency>
 
-		<!-- Log4j -->
-		<!-- 
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>${log4j.version}</version>
-		</dependency>
+		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
@@ -110,16 +99,10 @@
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
-			<artifactId>jcl-over-slf4j</artifactId>
-			<version>${slf4j.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>${slf4j.version}</version>
 		</dependency>
-		 -->
-		 
+		
 		<!-- Testing -->
 		<dependency>
 			<groupId>junit</groupId>

@@ -12,10 +12,13 @@ import net.atos.lepusservices.DAOs.UserDAO;
 import net.atos.lepusservices.models.AuthenticationUser;
 import net.atos.lepusservices.models.User;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @Path("/authentication")
 public class AuthenticationService {
-
-	// static Logger logger = Logger.getLogger(AuthenticationService.class);  
+	
+	static final Logger logger = LoggerFactory.getLogger(AuthenticationService.class);
 
 	@POST
 	@Path("/wibble")
@@ -38,8 +41,7 @@ public class AuthenticationService {
 
 	private Response getUserForWibble(String wibble) {
 		
-		// logger.info("getUserForWibble in");
-		System.out.println("CXF: getUserForWibble in");
+		logger.info("getUserForWibble in");
 		
 		Response response= null;
 
@@ -54,12 +56,10 @@ public class AuthenticationService {
 				response = Response.ok(user).build();
 			}
 		} catch (Exception exception) {
-			// logger.error("Exception: " + exception.getClass().toString() + " - " + exception.getMessage());;
-			response = Response.status(Status.INTERNAL_SERVER_ERROR).build();
+			logger.error("Exception: " + exception.getClass().toString() + " - " + exception.getMessage());;
 		}
 		
-		// logger.info("getUserForWibble out");
-		System.out.println("CXF: getUserForWibble out");
+		logger.info("getUserForWibble out");
 
 		return response;
 	}
@@ -76,7 +76,7 @@ public class AuthenticationService {
 	
 	private Response getUserForCredentials(String username, String password) {
 
-		System.out.println("CXF: getUserForCredentials in");
+		logger.info("CXF: getUserForCredentials in");
 
 		Response response= null;
 
@@ -95,11 +95,10 @@ public class AuthenticationService {
 				response = Response.ok(user).build();
 			}
 		} catch (Exception exception) {
-			// logger.error("Exception: " + exception.getClass().toString() + " - " + exception.getMessage());
-			response = Response.status(Status.INTERNAL_SERVER_ERROR).build();
+			logger.error("Exception: " + exception.getClass().toString() + " - " + exception.getMessage());
 		}
 		
-		System.out.println("CXF: getUserForCredentials out");
+		logger.info("CXF: getUserForCredentials out");
 		
 		return response;
 	}

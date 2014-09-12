@@ -21,9 +21,11 @@
 	<bean id="primeService" class="net.atos.lepusservices.webservices.PrimeService" />
 	<bean id="userService" class="net.atos.lepusservices.webservices.UserService" />
 
+	<!-- 
 	<bean id="authenticationProcessor" class="net.atos.lepusservices.processors.AuthenticationProcessor" />
+	-->
 	<bean id="wibbleProcessor" class="net.atos.lepusservices.processors.WibbleProcessor" />
-
+	
 	<bean id="jsonProvider" class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />
 
 	<bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
@@ -34,16 +36,26 @@
 
 	<cxf:rsServer 
 		id="rsServer1" 
+		address="http://localhost:8182/lepusservicescxf"
+		serviceClass="net.atos.lepusservices.webservices.CustomerService"
+		/>
+
+	<!-- 
+	<cxf:rsServer 
+		id="rsServer1" 
 		address="http://10.22.99.182:8182/lepusservicescxf"
 		serviceClass="net.atos.lepusservices.webservices.CustomerService"
 		/>
- 	
+	-->
+	
+	<!-- 
 	<cxf:rsServer 
 		id="rsServer2" 
 		address="http://10.22.99.182:8182/lepusservicescxf/rest/authentication/user"
 		serviceClass="net.atos.lepusservices.webservices.CamelAuthenticationService"
 		/>
-		
+	-->
+	 	
 	<jaxrs:server id="restServer" address="/">
 		<jaxrs:serviceBeans>
 			<ref bean="authenticationService" />
@@ -68,11 +80,13 @@
 			<!--  <to uri="activemq:queue:RestCalls" /> -->
 			<process ref="wibbleProcessor" />
 		</route>
+		<!-- 
 		<route>
 			<from uri="cxfrs://bean://rsServer2" />
 			<log message="rest: ${headers} ======== ${body}" />
 			<process ref="authenticationProcessor" />
 		</route>
+		-->
 	</camelContext>
 
 </beans>
